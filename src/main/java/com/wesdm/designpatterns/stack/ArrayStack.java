@@ -1,7 +1,7 @@
 package com.wesdm.designpatterns.stack;
 
 /**
- * A LIFO data structure
+ * A LIFO data structure.  ArrayDeque probably better as Stack.
  * @author Wesley
  *
  * @param <T>
@@ -9,7 +9,7 @@ package com.wesdm.designpatterns.stack;
 public class ArrayStack<T> implements Stack<T> {
 	private int stackPointer = -1;
 	@SuppressWarnings("unchecked")
-	private T[] stack = (T[]) new Object[1000];
+	private T[] stack = (T[]) new Object[16];
 
 	@Override
 	public void push(T o) {
