@@ -1,23 +1,29 @@
 package com.wesdm.designpatterns.stack;
 
 /**
- * A LIFO data structure.  ArrayDeque probably better as Stack.
+ * A LIFO data structure. ArrayDeque has the best performance for stack and queue.
+ * 
  * @author Wesley
  *
  * @param <T>
  */
 public class ArrayStack<T> implements Stack<T> {
-	private int stackPointer = -1;
+	private int stackPointer =-1;
 	@SuppressWarnings("unchecked")
-	private T[] stack = (T[]) new Object[16];
+	private T[] stack;
+
+	public ArrayStack() {
+		stack = (T[]) new Object[2];
+	}
 
 	@Override
 	public void push(T o) {
-		if (stackPointer < stack.length) {
-			stack[++stackPointer] = o;
-		} else {
-			throw new RuntimeException();
+		if (stackPointer >= stack.length) {
+			T[] tmp = (T[]) new Object[stackPointer*2];
+			System.arraycopy(stack, 0, tmp, 0, stackPointer);
+			stack = tmp;
 		}
+		stack[++stackPointer] = o;
 	}
 
 	@Override
@@ -48,6 +54,7 @@ public class ArrayStack<T> implements Stack<T> {
 			System.arraycopy(source, 0, stack, stackPointer + 1, source.length);
 			stackPointer += source.length;
 		} else {
+			//TODO: resize
 			throw new RuntimeException();
 
 		}

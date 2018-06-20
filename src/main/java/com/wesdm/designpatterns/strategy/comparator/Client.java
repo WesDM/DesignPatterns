@@ -15,6 +15,9 @@ public class Client {
 		
 		Collections.sort(Arrays.asList(fa), new AscComparator());		//supply strategy at runtime
 		Collections.sort(Arrays.asList(fa), new DesComparator());
+		
+		Collections.sort(Arrays.asList(fa), (o1,o2) -> o2.getVal().compareTo(o1.getVal()));
+
 
 		System.out.println(Arrays.toString(fa));
 	}
